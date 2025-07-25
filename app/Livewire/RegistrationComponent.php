@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Http\Requests\StoreRegistrationRequest;
 
 class RegistrationComponent extends Component
 {
@@ -14,7 +15,7 @@ class RegistrationComponent extends Component
     
     public $id_card = '';
     public $code = '';
-    public function save()
+    public function save(StoreRegistrationRequest $request)
     {
         //Stored here
         session()->flash('status', 'Se ha matrículado satisfactoriamente');

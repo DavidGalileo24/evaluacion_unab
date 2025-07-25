@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="p-2">
+    <div class="p-6">
             <div class="bg-white overflow-hidden">
                 <livewire:registration-component /> 
             </div>
