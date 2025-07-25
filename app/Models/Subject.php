@@ -12,5 +12,7 @@ class Subject extends Model
 
     public function registrations(){
         return $this->belongsToMany(Student::class, 'registration_date');
+        
+        return $this->belongsToMany(Student::class)->using(Registration::class);
     }
 }
