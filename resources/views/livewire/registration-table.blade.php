@@ -9,14 +9,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($this->query()->get() as $registro)
+            @forelse ($this->query()->get() as $registro)
                 <tr>
                     <td class="border px-4 py-2">{{ $registro->student->completed_name }}</td>
                     <td class="border px-4 py-2">{{ $registro->subject->subject_name }}</td>
                     <td class="border px-4 py-2">{{ $registro->registration_date }}</td>
                     <td class="border px-4 py-2">Eliminar</td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="4" class="border px-4 py-2 text-center text-gray-500">
+                        No se ha encontrado ningún registro
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

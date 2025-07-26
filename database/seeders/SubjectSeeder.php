@@ -17,5 +17,13 @@ class SubjectSeeder extends Seeder
             'subject_name' => 'Sistemas Operativos',
             'code' => 'SIS-OP',
         ]);
+        Subject::create([
+            'subject_name' => 'Bases de datos 1',
+            'code' => 'BAS-DAT-UNO',
+        ]);
+        Subject::create([
+            'subject_name' => 'Contabilidad 1',
+            'code' => 'CONT-UNO',
+        ]);
     }
 }

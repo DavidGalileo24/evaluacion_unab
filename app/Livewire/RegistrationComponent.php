@@ -20,26 +20,25 @@ class RegistrationComponent extends Component
     {
         return view('livewire.registration-component');
     }
-
     
     public function save()
     {
         $this->validateData();
         $student = Student::where('id_card', $this->id_card)->first();
         $subject = Subject::where('code', $this->code)->first();
+        if (!$student || !$subject) {
+            session()->flash('error', 'Estudiante o materia no encontrada');
+            return;
+        }
         Registration::create([
             'student_id' => $student->id,
             'subject_id' => $subject->id,
             'registration_date' => Carbon::now()->format('Y-m-d')
-        ]);
-        if (!$student || !$subject) {
-            session()->flash('error', 'Estudiante o materia no encontrada');
-            return;
-        } else{
-            session()->flash('status', 'Se ha matrículado satisfactoriamente');
-        }
+        ]); 
+        session()->flash('status', 'Se ha matrículado satisfactoriamente');
         return $this->redirect('/dashboard');
     }
+
 
     public function validateData(){
 
