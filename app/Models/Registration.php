@@ -12,4 +12,13 @@ class Registration extends Pivot
     protected $fillable = [
         'student_id', 'subject_id', 'registration_date'
     ];
+
+    public function student() {
+        return $this->belongsTo(Student::class);
+    }
+
+    public function subject() {
+        return $this->belongsTo(Subject::class);
+    }
+
 }

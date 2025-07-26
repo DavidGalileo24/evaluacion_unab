@@ -11,8 +11,8 @@ class Student extends Model
     ];
 
     
-    public function registrations(){
-        return $this->belongsToMany(Subject::class, 'registration_date');
+    public function subjects(){
+        return $this->belongsToMany(Subject::class)->using(Registration::class);
     }
 
 }

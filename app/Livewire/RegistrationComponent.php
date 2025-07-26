@@ -9,11 +9,13 @@ use App\Models\Registration;
 use App\Http\Requests\StoreRegistrationRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Carbon as SupportCarbon;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class RegistrationComponent extends Component
 {
     public $id_card = '';
     public $code = '';
+
     public function render()
     {
         return view('livewire.registration-component');
@@ -46,4 +48,6 @@ class RegistrationComponent extends Component
             'code' => ['required'],
         ]);
     }
+
+    
 }
