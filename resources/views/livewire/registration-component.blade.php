@@ -3,8 +3,7 @@
         <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
             <div class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-white shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none">
             <h2 class="text-2xl">Nuevo registro de matrícula</h2><br>    
-            <form wire:submit="save">
-                    @csrf
+            <form wire:submit.prevent="save">
                     <div>
                         <x-label for="id_card" value="Carnet de estudiante" />
                         <x-input wire:model="id_card" id="id_card" class="block mt-1 w-full" type="text" name="id_card" required autofocus />

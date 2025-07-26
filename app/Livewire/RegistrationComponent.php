@@ -7,28 +7,43 @@ use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Registration;
 use App\Http\Requests\StoreRegistrationRequest;
-use Carbon;
+use Carbon\Carbon;
+use Illuminate\Support\Carbon as SupportCarbon;
 
 class RegistrationComponent extends Component
 {
+    public $id_card = '';
+    public $code = '';
     public function render()
     {
         return view('livewire.registration-component');
     }
 
     
-    public $id_card = '';
-    public $code = '';
-    public function save(StoreRegistrationRequest $request)
+    public function save()
     {
-        $student = Student::find($request->id_card);
-        $subject = Subject::find($request->code);
-        $data = Registration::create([
+        $this->validateData();
+        $student = Student::where('id_card', $this->id_card)->first();
+        $subject = Subject::where('code', $this->code)->first();
+        Registration::create([
             'student_id' => $student->id,
             'subject_id' => $subject->id,
             'registration_date' => Carbon::now()->format('Y-m-d')
         ]);
-        session()->flash('status', 'Se ha matrículado satisfactoriamente');
+        if (!$student || !$subject) {
+            session()->flash('error', 'Estudiante o materia no encontrada');
+            return;
+        } else{
+            session()->flash('status', 'Se ha matrículado satisfactoriamente');
+        }
         return $this->redirect('/dashboard');
+    }
+
+    public function validateData(){
+
+        return $this->validate([
+            'id_card' => ['required'],
+            'code' => ['required'],
+        ]);
     }
 }
